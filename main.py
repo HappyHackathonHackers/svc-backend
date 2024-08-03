@@ -1,8 +1,12 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from app.firebase import create_user
 import uvicorn
+from router.user import user_router
 
 app = FastAPI()
+
+app.include_router(user_router, prefix="/user", tags=["user"])
 
 origins = [
     "http://localhost",
@@ -19,13 +23,16 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 @app.get("/")
 async def main():
     return {"message": "Hello World"}
 
+
 @app.get("/items/{item_id}")
 async def read_item(item_id: int, q: str = None):
     return {"item_id": item_id, "q": q}
+
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
