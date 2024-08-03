@@ -1,12 +1,11 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.firebase import create_user
 import uvicorn
-from router.user import user_router
+from router.user import router
 
 app = FastAPI()
 
-app.include_router(user_router, prefix="/user", tags=["user"])
+app.include_router(router, prefix="/user", tags=["user"])
 
 origins = [
     "http://localhost",
