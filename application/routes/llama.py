@@ -22,7 +22,7 @@ index = VectorStoreIndex.from_documents(documents)
 
 @router.post("/chat")
 async def chat(request: ChatRequest):
-    model_name = "gpt-3.5-turbo"
+    model_name = "gpt-4o-mini"
     user_input = request.input
 
     try:
@@ -40,7 +40,7 @@ async def chat(request: ChatRequest):
                     "content": prompt,
                 }
             ],
-            model="gpt-3.5-turbo",
+            model="gpt-4o-mini",
         )
         message = response.choices[0]
     # except openai.error.OpenAIError as e:
