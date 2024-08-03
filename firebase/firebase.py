@@ -1,7 +1,12 @@
 import firebase_admin
 from firebase_admin import credentials, firestore, auth
+import os
 
-cred = credentials.Certificate("connectd-beta-firebase-adminsdk-uk7sw-57796ab912.json")
+script_dir = os.path.dirname(__file__)
+path_name = os.path.join(
+    script_dir, "connectd-beta-firebase-adminsdk-uk7sw-57796ab912.json"
+)
+cred = credentials.Certificate(path_name)
 default_app = firebase_admin.initialize_app(cred)
 
 

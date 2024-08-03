@@ -1,12 +1,18 @@
 from fastapi import APIRouter, HTTPException
+from pydantic import BaseModel
 from firebase.firebase import create_user, get_user, get_user_by_email, verify_id_token
 
 router = APIRouter()
 
 
+class User(BaseModel):
+    email: str
+    password: str
+
+
 @router.post("/create_user")
-async def create_user(email: str, password: str):
-    user = create_user(email, password)
+async def post_create_user(request: User):
+    user = create_user(request.email, request.password)
     return user
 
 
