@@ -1,8 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
-from app.routes.llama import router as llama_router
-from app.routes.human import router as human_router
+from application.routes.llama import router as llama_router
+from application.routes.human import router as human_router
 
 app = FastAPI()
 
