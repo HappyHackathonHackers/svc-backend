@@ -28,8 +28,9 @@ async def chat(request: ChatRequest):
     try:
         query_engine = index.as_query_engine()
         context = query_engine.query(user_input).response
+        role = "You are a helpful student service chatbot, and you have been tasked in helping the student find an answer to their question. All the information you need has beenplaced in the context prompt and you should find a way to correlate the information you find there with thequestion of the User."
 
-        prompt = f"Context: {context}\n\nUser: {user_input}"
+        prompt = f"Context: {context}\n\n Role: {role} \n\n User: {user_input}"
         
         print(prompt)
 
